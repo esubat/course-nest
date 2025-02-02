@@ -14,13 +14,13 @@ export class CourseResolver {
     return this.courseService.create(createCourseInput);
   }
 
-  @Query(() => [Course], { name: 'course' })
+  @Query(() => [Course], { name: 'courses' })
   findAll() {
     return this.courseService.findAll();
   }
 
   @Query(() => Course, { name: 'course' })
-  findOne(@Args('id', { type: () => Int }) id: MongooSchema.Types.ObjectId) {
+  findOne(@Args('id', { type: () => String}) id: MongooSchema.Types.ObjectId) {
     return this.courseService.findOne(id);
   }
 
@@ -30,7 +30,7 @@ export class CourseResolver {
   }
 
   @Mutation(() => Course)
-  removeCourse(@Args('id', { type: () => Int }) id: MongooSchema.Types.ObjectId) {
+  removeCourse(@Args('id', { type: () => String }) id: MongooSchema.Types.ObjectId) {
     return this.courseService.remove(id);
   }
 }

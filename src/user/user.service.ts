@@ -16,9 +16,10 @@ export class UserService {
    const newUser = new this.userModel(createUserInput);
    return newUser.save();
   }
-
+  
   findAll() {
-    return `This action returns all user`;
+    const users = this.userModel.find();
+    return users;
   }
 
   findOne(id: MongooSchema.Types.ObjectId) {

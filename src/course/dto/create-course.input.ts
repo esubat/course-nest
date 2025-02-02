@@ -3,7 +3,7 @@ import { Schema as MongooSchema } from 'mongoose';
 
 @InputType()
 export class CreateCourseInput {
-  @Field(() => String)
+  @Field(() => String, { nullable: false })
   name: string;
 
   @Field(() => String)
@@ -12,7 +12,7 @@ export class CreateCourseInput {
   @Field(() => String)
   duration: string;
 
-  @Field(() => String)
+  @Field(() => String, { nullable: false })
   creator: MongooSchema.Types.ObjectId;
 
   @Field(() => [String])

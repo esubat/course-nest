@@ -20,8 +20,10 @@ type Course {
 
 type Query {
   hello: String!
+  users: [User!]!
   user(id: String!): User!
-  course(id: Int!): Course!
+  courses: [Course!]!
+  course(id: String!): Course!
 }
 
 type Mutation {
@@ -30,7 +32,7 @@ type Mutation {
   removeUser(id: String!): User!
   createCourse(createCourseInput: CreateCourseInput!): Course!
   updateCourse(updateCourseInput: UpdateCourseInput!): Course!
-  removeCourse(id: Int!): Course!
+  removeCourse(id: String!): Course!
 }
 
 input CreateUserInput {
