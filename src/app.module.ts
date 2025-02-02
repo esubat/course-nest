@@ -7,6 +7,7 @@ import { ApolloDriver } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { UserModule } from './user/user.module';
 @Module({
   imports: [
     GraphQLModule.forRoot({
@@ -29,6 +30,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     ConfigModule.forRoot({
       cache: true,
     }),
+
+    UserModule,
 
   ],
   controllers: [],
