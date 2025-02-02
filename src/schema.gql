@@ -9,15 +9,24 @@ type User {
   password: String!
 }
 
+type Course {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 type Query {
   hello: String!
   user(id: String!): User!
+  course(id: Int!): Course!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: String!): User!
+  createCourse(createCourseInput: CreateCourseInput!): Course!
+  updateCourse(updateCourseInput: UpdateCourseInput!): Course!
+  removeCourse(id: Int!): Course!
 }
 
 input CreateUserInput {
@@ -31,4 +40,15 @@ input UpdateUserInput {
   email: String
   password: String
   _id: String!
+}
+
+input CreateCourseInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateCourseInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }

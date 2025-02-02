@@ -8,6 +8,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
 import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './user/user.module';
+import { CourseModule } from './course/course.module';
 @Module({
   imports: [
     GraphQLModule.forRoot({
@@ -32,6 +33,8 @@ import { UserModule } from './user/user.module';
     }),
 
     UserModule,
+
+    CourseModule,
 
   ],
   controllers: [],
