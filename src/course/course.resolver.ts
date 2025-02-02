@@ -3,6 +3,7 @@ import { CourseService } from './course.service';
 import { Course } from './entities/course.entity';
 import { CreateCourseInput } from './dto/create-course.input';
 import { UpdateCourseInput } from './dto/update-course.input';
+import { Schema as MongooSchema } from 'mongoose';
 
 @Resolver(() => Course)
 export class CourseResolver {
@@ -19,17 +20,17 @@ export class CourseResolver {
   }
 
   @Query(() => Course, { name: 'course' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => Int }) id: MongooSchema.Types.ObjectId) {
     return this.courseService.findOne(id);
   }
 
   @Mutation(() => Course)
   updateCourse(@Args('updateCourseInput') updateCourseInput: UpdateCourseInput) {
-    return this.courseService.update(updateCourseInput.id, updateCourseInput);
+    return this.courseService.update(updateCourseInput._id, updateCourseInput);
   }
 
   @Mutation(() => Course)
-  removeCourse(@Args('id', { type: () => Int }) id: number) {
+  removeCourse(@Args('id', { type: () => Int }) id: MongooSchema.Types.ObjectId) {
     return this.courseService.remove(id);
   }
 }

@@ -10,8 +10,12 @@ type User {
 }
 
 type Course {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  _id: String!
+  name: String!
+  description: String!
+  duration: String!
+  creator: User!
+  tags: [String!]!
 }
 
 type Query {
@@ -43,12 +47,18 @@ input UpdateUserInput {
 }
 
 input CreateCourseInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
+  description: String!
+  duration: String!
+  creator: String!
+  tags: [String!]!
 }
 
 input UpdateCourseInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  name: String
+  description: String
+  duration: String
+  creator: String
+  tags: [String!]
+  _id: String!
 }

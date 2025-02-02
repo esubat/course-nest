@@ -1,8 +1,10 @@
 import { CreateCourseInput } from './create-course.input';
-import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
+import { InputType, Field, PartialType } from '@nestjs/graphql';
+import { Schema as MongooSchema } from 'mongoose';
+
 
 @InputType()
 export class UpdateCourseInput extends PartialType(CreateCourseInput) {
-  @Field(() => Int)
-  id: number;
+  @Field(() => String)
+  _id: MongooSchema.Types.ObjectId;
 }

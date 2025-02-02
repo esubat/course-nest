@@ -1,7 +1,20 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
+import { InputType, Field } from '@nestjs/graphql';
+import { Schema as MongooSchema } from 'mongoose';
 
 @InputType()
 export class CreateCourseInput {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+  @Field(() => String)
+  name: string;
+
+  @Field(() => String)
+  description: string;
+
+  @Field(() => String)
+  duration: string;
+
+  @Field(() => String)
+  creator: MongooSchema.Types.ObjectId;
+
+  @Field(() => [String])
+  tags: string[];
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCourseInput } from './dto/create-course.input';
 import { UpdateCourseInput } from './dto/update-course.input';
+import { Schema as MongooSchema } from 'mongoose';
 
 @Injectable()
 export class CourseService {
@@ -12,15 +13,15 @@ export class CourseService {
     return `This action returns all course`;
   }
 
-  findOne(id: number) {
+  findOne(id: MongooSchema.Types.ObjectId) {
     return `This action returns a #${id} course`;
   }
 
-  update(id: number, updateCourseInput: UpdateCourseInput) {
+  update(id: MongooSchema.Types.ObjectId, updateCourseInput: UpdateCourseInput) {
     return `This action updates a #${id} course`;
   }
 
-  remove(id: number) {
+  remove(id: MongooSchema.Types.ObjectId) {
     return `This action removes a #${id} course`;
   }
 }
