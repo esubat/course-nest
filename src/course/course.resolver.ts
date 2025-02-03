@@ -4,12 +4,15 @@ import { Course } from './entities/course.entity';
 import { CreateCourseInput } from './dto/create-course.input';
 import { UpdateCourseInput } from './dto/update-course.input';
 import { Schema as MongooSchema } from 'mongoose';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.gards';
+import { UseGuards } from '@nestjs/common';
 
 @Resolver(() => Course)
 export class CourseResolver {
   constructor(private readonly courseService: CourseService) {}
 
   @Mutation(() => Course)
+  @UseGuards(JwtAuthGuard)
   createCourse(@Args('createCourseInput') createCourseInput: CreateCourseInput) {
     return this.courseService.create(createCourseInput);
   }

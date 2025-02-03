@@ -4,6 +4,7 @@ import { UpdateUserInput } from './dto/update-user.input';
 import { User, UserDocument } from './entities/user.entity';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model , Schema as MongooSchema } from 'mongoose';
+import { retry } from 'rxjs';
 
 @Injectable()
 export class UserService {
@@ -24,6 +25,11 @@ export class UserService {
 
   findOne(id: MongooSchema.Types.ObjectId) {
     return this.userModel.findById(id);
+  }
+  
+  findOneByEmail(email:string){
+    const user = this.userModel.findOne({ email })
+    return user;
   }
 
   update(id: MongooSchema.Types.ObjectId, updateUserInput: UpdateUserInput) {

@@ -11,7 +11,11 @@ export class User {
 
   @Field(() => String)
   @Prop()
-  name: string;
+  firstname: string;
+
+  @Field(() => String)
+  @Prop()
+  lastname: string;
 
   @Field(() => String)
   @Prop({unique: true})

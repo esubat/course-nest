@@ -4,7 +4,8 @@
 
 type User {
   _id: String!
-  name: String!
+  firstname: String!
+  lastname: String!
   email: String!
   password: String!
 }
@@ -16,6 +17,11 @@ type Course {
   duration: String!
   creator: User!
   tags: [String!]!
+}
+
+type LoginUserResponse {
+  user: User!
+  authToken: String!
 }
 
 type Query {
@@ -33,16 +39,20 @@ type Mutation {
   createCourse(createCourseInput: CreateCourseInput!): Course!
   updateCourse(updateCourseInput: UpdateCourseInput!): Course!
   removeCourse(id: String!): Course!
+  login(loginUserInput: LoginUserInput!): LoginUserResponse!
+  signUp(signupInput: CreateUserInput!): User!
 }
 
 input CreateUserInput {
-  name: String!
+  firstname: String!
+  lastname: String!
   email: String!
   password: String!
 }
 
 input UpdateUserInput {
-  name: String
+  firstname: String
+  lastname: String
   email: String
   password: String
   _id: String!
@@ -63,4 +73,9 @@ input UpdateCourseInput {
   creator: String
   tags: [String!]
   _id: String!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
 }
