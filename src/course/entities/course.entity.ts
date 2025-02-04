@@ -12,7 +12,7 @@ export class Course {
 
   @Field(() => String)
   @Prop({ required: true })
-  name: string;
+  title: string;
 
   @Field(() => String)
   @Prop()

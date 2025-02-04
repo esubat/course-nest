@@ -12,7 +12,7 @@ type User {
 
 type Course {
   _id: String!
-  name: String!
+  title: String!
   description: String!
   category: String!
   duration: String!
@@ -59,7 +59,7 @@ input UpdateUserInput {
 }
 
 input CreateCourseInput {
-  name: String!
+  title: String!
   description: String!
   category: String!
   duration: String!
@@ -67,7 +67,7 @@ input CreateCourseInput {
 }
 
 input UpdateCourseInput {
-  name: String
+  title: String
   description: String
   category: String
   duration: String

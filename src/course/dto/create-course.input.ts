@@ -5,7 +5,7 @@ import { Schema as MongooSchema } from 'mongoose';
 @InputType()
 export class CreateCourseInput {
   @Field(() => String, { nullable: false })
-  name: string;
+  title: string;
 
   @Field(() => String)
   description: string;
