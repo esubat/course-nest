@@ -41,10 +41,8 @@ export class AuthService {
         const user = await this.userService.findOneByEmail(payload.email)
         if (user) throw new Error ("user with email aready exists ")
         
-        const hashedPassword = await bcrypt.hash(
-            payload.password,
-            this.configService.get<number>('SALT_ROUNDS')
-        );
+        const saltRounds = this.configService.get<number>('SALT_ROUNDS') ?? 10;
+        const hashedPassword = await bcrypt.hash(payload.password, saltRounds);
         
         const newUser = await this.userService.create({
             ...payload, 
