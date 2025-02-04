@@ -1,4 +1,5 @@
 import { InputType, Field } from '@nestjs/graphql';
+import { Prop } from '@nestjs/mongoose';
 import { Schema as MongooSchema } from 'mongoose';
 
 @InputType()
@@ -10,11 +11,12 @@ export class CreateCourseInput {
   description: string;
 
   @Field(() => String)
+  @Prop()
+  category: string;
+
+  @Field(() => String)
   duration: string;
 
   @Field(() => String, { nullable: false })
   creator: MongooSchema.Types.ObjectId;
-
-  @Field(() => [String])
-  tags: string[];
 }

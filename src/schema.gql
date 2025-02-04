@@ -14,9 +14,9 @@ type Course {
   _id: String!
   name: String!
   description: String!
+  category: String!
   duration: String!
   creator: User!
-  tags: [String!]!
 }
 
 type LoginUserResponse {
@@ -61,17 +61,17 @@ input UpdateUserInput {
 input CreateCourseInput {
   name: String!
   description: String!
+  category: String!
   duration: String!
   creator: String!
-  tags: [String!]!
 }
 
 input UpdateCourseInput {
   name: String
   description: String
+  category: String
   duration: String
   creator: String
-  tags: [String!]
   _id: String!
 }
 

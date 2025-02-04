@@ -19,16 +19,16 @@ export class Course {
   description: string;
 
   @Field(() => String)
+  @Prop()	
+  category: string;
+
+  @Field(() => String)
   @Prop()
   duration: string;
 
   @Field(() => User)
   @Prop({ type: MongooSchema.Types.ObjectId, ref: 'User', required: true })
   creator: User;
-
-  @Field(() => [String])
-  @Prop()
-  tags: string[];
 }
 
 
