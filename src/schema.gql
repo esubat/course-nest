@@ -26,12 +26,21 @@ type LoginUserResponse {
   authToken: String!
 }
 
+type GoogleAuthResponse {
+  accessToken: String!
+  email: String!
+  name: String!
+  picture: String
+}
+
 type Query {
   hello: String!
   users: [User!]!
   user(id: String!): User!
   courses: [Course!]!
   course(id: String!): Course!
+  googleLoginUrl: String!
+  googleLoginCallback(code: String!): GoogleAuthResponse!
 }
 
 type Mutation {
