@@ -2,14 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type User {
-  _id: String!
-  firstname: String!
-  lastname: String!
-  email: String!
-  password: String!
-}
-
 type Course {
   _id: String!
   title: String!
@@ -17,6 +9,16 @@ type Course {
   category: String!
   duration: String!
   creator: User!
+}
+
+type User {
+  _id: String!
+  firstname: String!
+  lastname: String!
+  email: String!
+  role: String!
+  password: String!
+  courses: [Course!]!
 }
 
 type LoginUserResponse {
@@ -47,6 +49,7 @@ input CreateUserInput {
   firstname: String!
   lastname: String!
   email: String!
+  role: String!
   password: String!
 }
 
@@ -54,6 +57,7 @@ input UpdateUserInput {
   firstname: String
   lastname: String
   email: String
+  role: String
   password: String
   _id: String!
 }

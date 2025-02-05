@@ -9,5 +9,6 @@ import { MongooseModule } from '@nestjs/mongoose';
     MongooseModule.forFeature([{ name: Course.name, schema: CourseSchema }]),
   ],
   providers: [CourseResolver, CourseService],
+  exports: [CourseService],
 })
 export class CourseModule {}

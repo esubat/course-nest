@@ -4,13 +4,14 @@ import { UpdateUserInput } from './dto/update-user.input';
 import { User, UserDocument } from './entities/user.entity';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model , Schema as MongooSchema } from 'mongoose';
-import { retry } from 'rxjs';
+import { CourseService } from '../course/course.service';
 
 @Injectable()
 export class UserService {
 
   constructor(
-    @InjectModel(User.name) private userModel: Model<any>
+    @InjectModel(User.name) private userModel: Model<any>,
+    private courseService: CourseService
   ) {}
 
   create(createUserInput: CreateUserInput) {
@@ -23,8 +24,11 @@ export class UserService {
     return users;
   }
 
-  findOne(id: MongooSchema.Types.ObjectId) {
-    return this.userModel.findById(id);
+  async findOneById(id: MongooSchema.Types.ObjectId) {
+    const user = await this.userModel.findById(id).populate('courses');
+    const courses = await this.courseService.findByCreatorId(id);
+    user.courses = courses;
+    return user;
   }
   
   findOneByEmail(email:string){

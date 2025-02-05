@@ -44,4 +44,10 @@ export class CourseService {
   remove(id: MongooSchema.Types.ObjectId) {
     return `This action removes a #${id} course`;
   }
+
+  async findByCreatorId(creatorId: MongooSchema.Types.ObjectId) {
+    const courses = await this.courseModel.find({ creator: creatorId }).exec();
+    console.log(courses);
+    return courses;
+  }
 }

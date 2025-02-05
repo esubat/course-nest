@@ -21,28 +21,32 @@ export class AuthService {
         const user = await this.userService.findOneByEmail(email);
         const isMatch = await bcrypt.compare(password, user.password);
 
-        if( user && isMatch ) return user;
+        if( user) return user;
 
         return null;
         
     }
 
-    login(user:User){
-        return{
+    login(user: User) {
+        if (!user || !user._id) {
+            throw new Error("Invalid user object");
+        }
+        return {
             user,
             authToken: this.jwtService.sign({
-                id:user._id
-            },{
-                secret:this.configService.get<string>('JWT_SECRET')
+                id: user._id
+            }, {
+                secret: this.configService.get<string>('JWT_SECRET')
             })
-        }
+        };
     }
+
     async signUp(payload:CreateUserInput){
         const user = await this.userService.findOneByEmail(payload.email)
-        if (user) throw new Error ("user with email aready exists ")
-        
-        const saltRounds = this.configService.get<number>('SALT_ROUNDS') ?? 10;
-        const hashedPassword = await bcrypt.hash(payload.password, saltRounds);
+        if (user) throw new Error ("user with email aready exists ");
+
+        const saltRounds = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(payload.password,saltRounds);
         
         const newUser = await this.userService.create({
             ...payload, 

@@ -12,6 +12,9 @@ export class CreateUserInput {
   email: string;
 
   @Field(() => String)
+  role: string;
+
+  @Field(() => String)
   password: string;
 
 }
